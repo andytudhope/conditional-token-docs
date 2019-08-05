@@ -1,0 +1,115 @@
+<!-- The main content area -->
+<main id="main" role="main">
+
+	<!--HOME-INTRO-->
+	<section class="home-intro">
+		<div class="container">
+	        <div class="row">
+	            <div class="col-md-7 col-lg-6">
+	            	<div class="inner d-flex align-items-start flex-column justify-content-center h-100">
+						<div class="row">
+							<div class="col-md-11">
+								<h1><%- __('site.home.intro.title') %></h1>
+								<p class="teaser-1"><%- __('site.home.intro.description') %></p>
+								<div class="d-flex">
+									<a href="<%- show_lang() %>/docs/" class="btn btn-arrow"><%- __('site.link.learn-more') %></a>
+								</div>
+							</div>
+						</div>
+	            	</div>
+	            </div>
+	            <div class="col-md-4 ml-auto col-lg-6 col-grey">
+					<%- image_tag("/img/teaser-image.png", { srcset: '/img/teaser-image-2x.png 2x'}) %>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<!--END-HOME-INTRO-->
+
+	<!--HOME-DECENTRALIZED-PRIVATE-->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-grey home-decentralized">
+					<div class="inner d-flex align-items-start flex-column h-100">
+						<div class="row">
+							<div class="col-md-11 col-lg-10">
+								<%- image_tag("/img/decentralized-illustration.png", { srcset: '/img/decentralized-illustration-2x.png 2x'}) %>
+								<p class="teaser-2"><%- __('site.home.decentralized.subtitle') %></p>
+								<h3><%- __('site.home.decentralized.title') %></h3>
+								<p class="p-large"><%- __('site.home.decentralized.description') %></p>
+								<a href="<%- show_lang() %>/get-involved/" class="btn btn-arrow"><%- __('site.link.get-involved') %></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-black col-offset-top home-private">
+					<div class="inner d-flex align-items-start flex-column justify-content-center h-100">
+						<div class="row">
+							<div class="col-lg-11 d-flex align-items-start flex-column">
+								<p class="teaser-2"><%- __('site.home.private.subtitle') %></p>
+								<h3><%- __('site.home.private.title') %></h3>
+								<p class="p-large"><%- __('site.home.private.description') %></p>
+								<%- image_tag("/img/private-message-illustration.png", { srcset: '/img/private-message-illustration-2x.png 2x'}) %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--END-HOME-DECENTRALIZED-PRIVATE-->
+
+	<!--HOME-WALLET-BROWSER-->
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-black col-offset-bottom home-wallet">
+					<div class="inner d-flex align-items-start flex-column justify-content-center h-100">
+						<div class="row">
+							<div class="col-md-11 col-lg-10">
+								<p class="teaser-2"><%- __('site.home.wallet.subtitle') %></p>
+								<h3><%- __('site.home.wallet.title') %></h3>
+								<p class="p-large"><%- __('site.home.wallet.description') %></p>
+								<a href="https://safe.gnosis.io/" class="btn btn-white btn-arrow btn-arrow-white"><%- __('site.link.learn-more') %></a>
+								<div class="img-holder">
+									<%- image_tag("/img/wallet-illustration.png", { srcset: '/img/wallet-illustration-2x.png 2x'}) %>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-grey home-browser">
+					<div class="inner d-flex align-items-start flex-column h-100">
+						<%- image_tag("/img/browser-illustration.png", {srcset: "/img/browser-illustration-2x.png 2x"}) %>
+						<p class="teaser-2"><%- __('site.home.browser.subtitle') %></p>
+						<h3><%- __('site.home.browser.title') %></h3>
+						<p class="p-large"><%- __('site.home.browser.description') %></p>
+						<a href="https://github.com/gnosis/dex-research" class="btn btn-arrow"><%- __('site.link.learn-more') %></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--END-HOME-WALLET-BROWSER-->
+
+	<!--HOME-SECURITY-->
+	<section class="home-security p-t-160 p-b-160">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="inner text-center">
+						<div class="img-holder">
+							<%- image_tag("/img/lock.svg") %>
+						</div>
+						<h3><%- __('site.home.security.title') %></h3>
+						<p class="teaser-2"><%- __('site.home.security.description') %></p>
+						<a href="https://gnosis.io/" class="link-arrow"><%- __('site.link.learn-more') %></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--END-HOME-SECURITY-->
+
+</main>

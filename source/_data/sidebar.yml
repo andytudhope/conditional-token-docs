@@ -1,0 +1,13 @@
+docs:
+  docs:
+    technical_documentation: technical_documentation.html (Overview)
+    eip-1155: eip-1155.html (EIP-1155)
+  conditional-tokens:
+    conditional-tokens: / (Conditional Tokens)
+    contract: contract.html (Contract Overview)
+    split-merge-redeem: split-merge-redeem.html (Split, Merge, Redeem)
+    get-started: get-started.html (Get Started)
+  tutorials:
+    index: index.html (Tutorials)
+  research:
+    index: index.html (Research)
