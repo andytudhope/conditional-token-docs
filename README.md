@@ -26,7 +26,7 @@ Make sure you have node.js installed first.
 1. If you would like add new styles, you can find all the `sass` files in `themes/navy/source/scss` - add your own there and keep things modular, clean and performing well.
 2. If you would like to add some JS for animations of images, or other potential bounties, the place to do that is `themes/navy/source/js`.
 3. Changing the header, footer, mobile nav, or scripts (in `after_footer`) can be done in `themes/navy/layout/partial`.
-4. Each new subdirectory gets it's own route, so if you want to add a new section like `status.im/extensions` or `status.im/contribute`, then just create a new directory in `source`, name it what you want the route to be called, and add an `index.md` file to it. 
+4. Each new subdirectory gets it's own route, so if you want to add a new section like `multitoken.world/extensions` or `multitoken.world/contribute`, then just create a new directory in `source`, name it what you want the route to be called, and add an `index.md` file to it. 
 
 If you want it to have a unique layout, set it up something like this:
 
