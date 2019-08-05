@@ -49,7 +49,7 @@ hexo.extend.helper.register('sidebar', function(type) {
               if(menu[category] != title){
                 var href = '';
                 href = category +'/'+ link +'.html';
-                href = '/' + show_lang + href;
+                href = '/conditional-token-docs/' + show_lang + href;
                 if(title.startsWith("..")){
                   href = title.replace("../","");
                   href = href.substring(0, href.indexOf(' '));
