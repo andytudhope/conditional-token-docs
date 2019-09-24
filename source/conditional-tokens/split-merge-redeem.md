@@ -5,7 +5,7 @@ title: Split, Merge, and Redeem Positions
 
 # Split, Merge, and Redeem Positions
 
-It should be clear from the previous section that, by constructing conditions and outcome collections clearly, we can define _positions_ in prediction markets in such a way that they form a DAG. These nested and interconnected positions are what we are talking about when we say that every one of the millions of future tokens ought to have a market associated with it that can genuinely survive due to its access to a global liquidity pool. 
+It should be clear from the previous section that, by constructing conditions and outcome collections clearly, we can define _positions_ in prediction markets. These nested and interconnected positions are what we are talking about when we say that every one of the millions of future tokens ought to have a market associated with it that can genuinely survive due to its access to a global liquidity pool. 
 
 ![DAG](../img/all-positions-from-two-conditions.png)
 
@@ -59,7 +59,7 @@ The effect of this transaction is to transfer `amount` DollaCoin from the messag
 
 Outcome tokens are not EIP-20 tokens, but EIP-1155 multi tokens, allowing for batch transfers and other useful, gas-saving functionality explained below.
 
-Importantly, he set of `(A)`, `(B)`, and `(C)` is not the only nontrivial partition of outcome slots for the example categorical condition. For example, the set `(B)` (with index set `0b010`) and `(A|C)` (with index set `0b101`) also partitions these outcome slots, and consequently, splitting from `$` to `$:(B)` and `$:(A|C)` is also valid and can be done with the following code:
+Importantly, the set of `(A)`, `(B)`, and `(C)` is not the only nontrivial partition of outcome slots for the example categorical condition. For example, the set `(B)` (with index set `0b010`) and `(A|C)` (with index set `0b101`) also partitions these outcome slots, and consequently, splitting from `$` to `$:(B)` and `$:(A|C)` is also valid and can be done with the following code:
 
 ```js
 

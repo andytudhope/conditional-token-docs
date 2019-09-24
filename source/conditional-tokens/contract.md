@@ -7,14 +7,34 @@ title: Contract Overview
 
 In order to understand [conditional tokens](https://github.com/gnosis/conditional-tokens-contracts/blob/master/contracts/ConditionalTokens.sol), you need to grasp how they are used to construct _positions_. A _position_ is a financial term which basically means a bet, i.e. someone putting their money where their mouth is. Positions are fundamental to how free markets work, but there is a problem. Many so-called "positions" which can be taken in the current financial system are only available to select groups of rich individuals, corporations and government bodies. The market is never _really_ free or fair, but we can help change that through altering the very notion of what a position is, as well as who can access it.
 
-However, before we can talk about positions, we first have to talk about
+## Positions
 
-1. Conditions, and
-2. Outcome collections
+Positions consist of collateral (ERC-20) and one or more _conditions_ with _outcome collections_. Positions become valuable precisely when all of the constituent outcome conditions are reported as true.
+
+We explain conditions and outcome collections below, but show here some complex conditions to illustrate the power of conditional tokens and positions. Consider a dollar (DAI) collateralised position with two conditions:
+
+1. Condition 1, with outcome collection `[A, B, C]`
+2. Condition 2, with outcome collection `[HI, LO]`
+
+Further, consider Boolean `OR` possibilities that might make interesting positions.
+
+1. A or B, B or C, A or C
+
+We can add those possibilities to the outcome collection for Condition 1:
+
+1. Condition 1, with outcome collection `[A, B, C, A|B, B|C, A|C]`
+
+We can commit collateral to either (or both!) of these conditions and create conditional tokens for each outcome. We denote collateralised positions as `$:(A|B)`, meaning “collateral” (can be DAI, US Dollar equivalents, or another ERC-20 token) for the "A or B" outcome. Similarly, `$:(LO)` means collateral and the "LO" outcome. Most interestingly, we can merge these positions into a deeper position like `$:(A|B)&(LO)`, meaning collateral, A or B for the first condition, and LO for the second condition (and split them back into shallower positions). Moving between positions and trading on open markets has never been easier.
+
+Here is a graph of all positions that are contingent on the outcome of these two conditions:
+
+![Outcomes](../img/outcomes.png)
+
+Focus on this **critical point**: a position is now a clearly defined mathematical construct on a public and decentralised network. Anybody can create a condition, and anybody can take a position on that condition. This construct allows as many markets to exist as there are tokens, and for each of those markets to benefit from a global pool of liquidity.
 
 ## Conditions
 
-Before conditional tokens can exist, a condition must be prepared. A condition is a question to be answered in the future by a specific oracle in a particular manner. The following function is used to prepare a condition, which will be decided when the oracle submits what we call a "payout vector":
+Let's take a step back. Before conditional tokens can exist, a condition must be prepared. A condition is a question to be answered in the future by a specific oracle in a particular manner. The following function is used to prepare a condition, which will be decided when the oracle submits what we call a "payout vector":
 
 ```solidity
 function prepareCondition(address oracle, bytes32 questionId, uint payoutDenominator, uint outcomeSlotCount) external
@@ -22,16 +42,16 @@ function prepareCondition(address oracle, bytes32 questionId, uint payoutDenomin
 
 1. _oracle_ – The account assigned to report the result for the prepared condition.
 2. _questionId_ – An identifier for the question to be answered by the oracle.
-3. _payoutDenominator_ – What the payouts reported by the oracle must eventually sum up to. This used to be 1, but having a variable allows for more flexibility.
+3. _payoutDenominator_ – What the payouts reported by the oracle must eventually sum up to.
 4. _outcomeSlotCount_ – The number of outcome slots which should be used for this condition. Must not exceed 256.
 
-> You, the consumer of the contract, have to interpret the question ID correctly. For example, it could be an IPFS hash which can be used to retrieve a document specifying the question more fully. Agreeing upon the mechanism for creating questionIds is left up to clients.
+You, the consumer of the contract, have to interpret the question ID correctly. For example, it could be an IPFS hash which can be used to retrieve a document specifying the question more fully. Allowing clients to choose their own mechanisms for generating questionIds and choosing orcales allows for more flexibility in the long run.
 
 ## Simple Example
 
 Say we have a question where only one out of multiple choices may be chosen:
 
-> Who out of the following will be chosen? [Alice, Bob, Carol]
+> Who out of the following will be chosen? [A, B, C, D, E]
 
 Through some commonly agreed upon mechanism, the detailed description for this question becomes a 32 byte questionId: `0xabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc1234`
 
@@ -43,35 +63,39 @@ await conditionalTokens.prepareCondition(
     '0x1337aBcdef1337abCdEf1337ABcDeF1337AbcDeF',
     '0xabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc1234',
     1,
-    3
+    5
 )
 ```
-Later, if the oracle makes a report that the payout vector for the condition is `[0, 1, 0]`, it is stating that Bob was chosen, as the outcome slot associated with Bob would receive all of the payout.
+Later, if the oracle makes a report that the payout vector for the condition is `[0, 1, 0, 0, 0]`, it is stating that B was chosen, as the outcome slot associated with B would receive all of the payout.
 
 ## Outcome Collections
 
-An outcome collection is defined as a **nonempty proper subset of a condition’s outcome slots which represents the sum total of all the contained slots payout values**. Basically, in the above question about who was chosen, we might have thought that a collection of outcomes like "Alice or Bob", denoted `(A|B)`, was the most likely, so we need to be able to represent that. Outcome collections are how we do so. 
+An outcome collection is defined as a **nonempty proper subset of a condition’s outcome slots which represents the sum total of all the contained slots payout values**. Outcome collections are represented by an index set. An index set is a uint whose bits identify whether the nth outcome is present in the collection, starting from the lower weight bits. In our above example, the five trivial outcomes represented in binary are:
 
-Tthe payout vector which the oracle reports will contain a `1` in exactly one of the three slots, so the sum of the values in Alice’s and Bob’s slots is one precisely when either Alice or Bob is chosen, and zero otherwise.
+1. (A): 0b00001
+2. (B): 0b00010
+3. (C): 0b00100
+4. (D): 0b01000
+5. (E): 0b10000
 
-`(C)` by itself is also a valid outcome collection, but `()` is an invalid outcome collection, as it is empty. Empty outcome collections represent no eventuality and have no value no matter what happens. `(A|B|C)` is also an invalid outcome collection, as it is not a proper subset. Outcome slots from different conditions (e.g. `(A|X)`) cannot be composed in a single outcome collection.
+We are not limited to trivial collections, we can compose them:
 
-An outcome collection may be represented by a **condition** and an **index set**. This is a 256 bit array which denotes which outcome slots are present in a outcome collection. For example, the value `3 == 0b011` corresponds to the outcome collection `(A|B)`, whereas the value `4 == 0b100` corresponds to `(C)`. Note that the indices start at the lowest bit in a `uint`.
+1. (A|B): 0b00011
+2. (A|C): 0b00101
+3. (A|E): 0b10001
+4. (C|E): 0b10100
+5. (A|B|D): 0b01011
+6. (A|B|C|D|E): 0b11111
 
-An outcome collection can be identified with a 32 byte value called a collectionId. In order to calculate the collectionId for `(A|B)`, we hash the conditionId and the index set:
-```js
-web3.utils.soliditySha3({
-    // Some previously calculated conditionId
-    t: 'bytes32',
-    v: '0x67eb23e8932765c1d7a094838c928476df8c50d1d3898f278ef1fb2a62afab63'
-}, {
-    t: 'uint',
-    v: 0b011 // Binary Number literals supported in newer versions of JavaScript
-})
-```
-This results in a collectionId of `0x52ff54f0f5616e34a2d4f56fb68ab4cc636bf0d92111de74d1ec99040a8da118`.
+This last one is called the `fullIndexSet`. It is calculated by bit-shifting, to make a number with as many 1s as there are outcomes. But why bother with an index set at all? First off, it allows us to enumerate all possible combinations of outcomes:
 
-While outcome slots from different conditions cannot be composed, we can combine the collectionIds of outcome collections for different conditions by adding their values and then taking the lowest 256 bits. To illustrate this, another example!
+1. 0b0 represents no outcome
+2. 0b11...11 represents all outcomes
+3. Any other combination is a number strictly between 0b0 and 0b11...11 in a one-to-one relationship.
+
+Further, it is useful because of the bitwise operations it offers. For instance, if you want to merge the collections `(A|D)` and `(D|E)`, you use OR, so in this case `0b01001 OR 0b11000 -> 0b11001`. We recognise the new index set as `(A|D|E)`, exactly what we are looking for. We can also check the intersection between index sets. For example, if we have `(B|E)` and `(B|C|D)`, we can discover if they intersect in O(1) using AND. In this case `0b10010 AND 0b01110 -> 0b00010`. The result represents the `(B)` outcome, which is where the collections intersect. It is > 0, so they intersect. The AND of two sets is == 0 if they do not intersect.
+
+This logic allows us to _partition outcome collections_. A partition is outcome collections which do not intersect. A trivial partition is `[(A), (B), (C), (D), (E)]`. `[(A|C), (B|D), (E)]` is another. We could easily check for intersections in O(m^2), where m is the number of collections, but we do it in considerably more efficient O(m) fashion. The Gnosis prediction market contract tracks the outcomes that have not been mentioned yet in `freeIndexSet`. It starts as "all outcomes have not been mentioned yet". Then, on every collection, it makes sure that this collection is fully inside the still available outcomes, then flips down the bits of the collection with the use of XOR. Bonus feature: when `freeIndexSet == 0`, meaning there remain no unmentioned outcomes, your list of index sets, a.k.a. your partition, is exhaustive.
 
 ## Scalar Example
 
@@ -105,19 +129,9 @@ Finally, we can find the combined collectionId for the two different conditions 
 ```
 This yields the value `0x2a9b72306758380e3b0a31125ed39a635432b283180c41b3fe8b5f5eb4971df4`.
 
-## Defining Positions
+## Compounding Conditions
 
-In order to define a position, we first need to designate a collateral token. This token must be an ERC20 token which exists on the same chain as the _ConditionalTokens.sol_ instance.
-
-Then we need at least one condition with an outcome collection, though a position may refer to multiple conditions each with an associated outcome collection. Positions become valuable when all of the constituent outcome collections are valuable. More explicitly, the value of a position is a product of the values of those outcome collections composing the position.
-
-Forget the code for a moment and focus on this **critical point**: a position is now a clearly defined mathematical construct on a public and decentralised network. Anybody can create a condition, and anybody can take a position on that condition. It may seem a little abstract now, but this construct allows as many markets to exist as there are tokens, and for each of those markets to benefit from a global pool of liquidity.
-
-Back into the weeds: position identifiers can also be calculated by hashing the address of the collateral token and the combined collectionIds of all the outcome collections in the position. We say positions are _deeper_ if they contain more conditions and outcome collections, and _shallower_ if they contain less.
-
-## Positions Example
-
-Let’s suppose that there is an ERC20 token called DollaCoin which exists at the address `0xD011ad011ad011AD011ad011Ad011Ad011Ad011A`, and it is used as collateral for some positions. We will denote this token with `$`. We can calculate the positionId for the position `$:(A|B)` via:
+Let’s return to our ERC20 DollaCoin above, which exists at the address `0xD011ad011ad011AD011ad011Ad011Ad011Ad011A`, and is used as collateral for some positions. We will denote this token with `$`. We can calculate the positionId for the position `$:(A|B)` via:
 ```js
 web3.utils.soliditySha3({
     t: 'address',
@@ -133,6 +147,6 @@ Similarly, `$:(LO)` is `0xfdad82d898904026ae6c01a5800c0a8ee9ada7e7862f9bb6428b6f
 
 The important point to grasp here is that DollaCoin may be staked in the contract as collateral in order to take a position in either of our two examples, or indeed, both. In other words, there are _shallow_ positions like `$:(LO)`, or _deep_ positions like `$:(A|B)&(LO)`. Stake in shallow positions can only be obtained through locking collateral directly in the contract; stake in deeper positions may be accessed by burning stake in shallower positions. The resulting nested and interconnected positions are what we are talking about when we say that every one of the millions of future tokens ought to have a market associated with it that can genuinely survive due to its access to a global liquidity pool.
 
-It's easiest to see this at work if we draw out a DAG (directed acyclic graph), which shows all positions backed by `$` that are contingent on either or both of our example conditions:
+It's easiest to see this at work if we draw out the same graph as earlier, hopefully now with greater understanding:
 
 ![DAG](../img/all-positions-from-two-conditions.png)
