@@ -6,23 +6,23 @@ site:
     decentralized:
       subtitle: "A MultiToken World"
       title: "Permissionless Innovation"
-      description: "Ethereum always has always promoted permissionless innovation. EIP-1155 is the latest in an already impressive array of examples, and is being developed and used actively by everyone from game developers to prediction market makers."
+      description: "Ethereum always has always promoted permissionless innovation. ERC-1155 is the latest in an already impressive array of examples, and is being developed and used actively by everyone from game developers to prediction market makers."
       link: "Docs"
     private:
-      subtitle: "Better Economies"
+      subtitle: "Better Governance"
       title: "Our Mission"
-      description: "Continue reforming financial systems by creating liquidity and efficient market mechanisms for any kind of digital asset. Promote new use cases, like prediciton markets, to enable collaboration at scales never before seen."
+      description: "Continue reforming financial systems by creating liquidity and efficient market mechanisms for any kind of digital asset. Promote new use cases, like prediction markets, to enable better decision-making and collaboration at scales never before seen."
     wallet:
       subtitle: "Enabling Community Money"
       title: "Safe and Secure"
-      description: "Safely send, store and receive all your crypto assets with the best multi-signature wallet in the world."
+      description: "Safely send, store and receive all your crypto assets with the most secure smart wallet in the world."
     browser:
       subtitle: "Become a Pioneer"
       title: "DEXs and dFusion"
       description: "Help us with cutting-edge research on running decentralized exchanges on public and permissionless networks."
     security:
       title: "Secure Markets for Everyone"
-      description: "Free market price discovery mechanisms have literally changed the world. Now, we can ensure they remain free and unstoppable forever, as well as grant anyone with an internet connection the ability to use them. This is the real financial revolution."
+      description: "Price discovery mechanisms have changed the world. Now, we can ensure they remain free and unstoppable forever, as well as grant anyone with an internet connection the ability to use them. This is a revolution in what — and how — we value."
   get-involved:
     index:
       intro:
@@ -206,3 +206,4 @@ site:
     educators: "Educators"
     community-groups: "Community Groups"
     learn-more: "Learn More"
+    read-all: "Get Learning"

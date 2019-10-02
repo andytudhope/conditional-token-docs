@@ -5,13 +5,13 @@ title: Contract Overview
 
 # Conditional Token Overview
 
-In order to understand [conditional tokens](https://github.com/gnosis/conditional-tokens-contracts/blob/master/contracts/ConditionalTokens.sol), you need to grasp how they are used to construct _positions_. A _position_ is a financial term which basically means a bet, i.e. someone putting their money where their mouth is. Positions are fundamental to how free markets work, but there is a problem. Many so-called "positions" which can be taken in the current financial system are only available to select groups of rich individuals, corporations and government bodies. The market is never _really_ free or fair, but we can help change that through altering the very notion of what a position is, as well as who can access it.
+In order to understand [conditional tokens](https://github.com/gnosis/conditional-tokens-contracts/blob/master/contracts/ConditionalTokens.sol), you need to grasp how they are used to construct _positions_. A "position" is a financial term which can be described as a buy or sell action that reflects someone’s belief in an asset’s, or multiple assets’, future price. Positions are fundamental to how free markets work, but there is a problem. Many so-called "positions" which can be taken in the current financial system are only available to select groups of wealthy individuals, corporations and government bodies. The market is never _really_ free or fair, but we can help change that through altering the very notion of what a position is, as well as who can access it.
 
 ## Positions
 
-Positions consist of collateral (ERC-20) and one or more _conditions_ with _outcome collections_. Positions become valuable precisely when all of the constituent outcome conditions are reported as true.
+Positions consist of collateral (ERC-20 tokens) and one or more _conditions_ with _outcome collections_. Positions become valuable precisely when all of its outcome conditions are reported as true.
 
-We explain conditions and outcome collections below, but show here some complex conditions to illustrate the power of conditional tokens and positions. Consider a dollar (DAI) collateralised position with two conditions:
+We explain conditions and outcome collections below, but shown here as some complex conditions to illustrate the power of conditional tokens and positions. Consider a dollar (DAI) collateralized position with two conditions:
 
 1. Condition 1, with outcome collection `[A, B, C]`
 2. Condition 2, with outcome collection `[HI, LO]`
@@ -24,17 +24,17 @@ We can add those possibilities to the outcome collection for Condition 1:
 
 1. Condition 1, with outcome collection `[A, B, C, A|B, B|C, A|C]`
 
-We can commit collateral to either (or both!) of these conditions and create conditional tokens for each outcome. We denote collateralised positions as `$:(A|B)`, meaning “collateral” (can be DAI, US Dollar equivalents, or another ERC-20 token) for the "A or B" outcome. Similarly, `$:(LO)` means collateral and the "LO" outcome. Most interestingly, we can merge these positions into a deeper position like `$:(A|B)&(LO)`, meaning collateral, A or B for the first condition, and LO for the second condition (and split them back into shallower positions). Moving between positions and trading on open markets has never been easier.
+We can commit collateral to either (or both!) of these conditions and create conditional tokens for each outcome. We denote collateralized positions as `$:(A|B)`, meaning “collateral” (can be DAI, US Dollar equivalents, or another ERC-20 token) for the "A or B" outcome. Similarly, `$:(LO)` means collateral and the "LO" outcome. Most interestingly, we can merge these positions into a deeper position like `$:(A|B)&(LO)`. This notation shows collateral staked on A or B for the first condition, and LO for the second condition. Moving between positions and trading on open markets has never been easier.
 
 Here is a graph of all positions that are contingent on the outcome of these two conditions:
 
 ![Outcomes](../img/outcomes.png)
 
-Focus on this **critical point**: a position is now a clearly defined mathematical construct on a public and decentralised network. Anybody can create a condition, and anybody can take a position on that condition. This construct allows as many markets to exist as there are tokens, and for each of those markets to benefit from a global pool of liquidity.
+Focus on this **critical point**: a position is now a clearly defined mathematical construct on a public and decentralized network. Anybody can create a condition, and anybody can take a position on that condition. This construct allows as many markets to exist as there are tokens, and for each of those markets to benefit from a global pool of liquidity.
 
 ## Conditions
 
-Let's take a step back. Before conditional tokens can exist, a condition must be prepared. A condition is a question to be answered in the future by a specific oracle in a particular manner. The following function is used to prepare a condition, which will be decided when the oracle submits what we call a "payout vector":
+Let's take a step back. Before conditional tokens can exist, a condition must be prepared. Preparing a condition means that you must define several specifications of a condition, including how a specific oracle reports the condition’s outcome. The following function is used to prepare a condition, which will be decided when the oracle submits what we call a "payout vector":
 
 ```solidity
 function prepareCondition(address oracle, bytes32 questionId, uint payoutDenominator, uint outcomeSlotCount) external
@@ -66,11 +66,11 @@ await conditionalTokens.prepareCondition(
     5
 )
 ```
-Later, if the oracle makes a report that the payout vector for the condition is `[0, 1, 0, 0, 0]`, it is stating that B was chosen, as the outcome slot associated with B would receive all of the payout.
+Later, if the oracle makes a report that the payout vector for the condition is `[0, 1, 0, 0, 0]`, it is stating that B was chosen, and the outcome slot associated with B would receive all of the payout.
 
 ## Outcome Collections
 
-An outcome collection is defined as a **nonempty proper subset of a condition’s outcome slots which represents the sum total of all the contained slots payout values**. Outcome collections are represented by an index set. An index set is a uint whose bits identify whether the nth outcome is present in the collection, starting from the lower weight bits. In our above example, the five trivial outcomes represented in binary are:
+An outcome collection is defined as a **nonempty proper subset of a condition’s outcome slots which represents the sum total of all the contained slots payout values**. Outcome collections are represented by an index set. An index set is a uint whose bits identify whether the nth outcome is present in the collection, starting from the lower weight bits. In the example above, the five trivial outcomes represented in binary are:
 
 1. (A): 0b00001
 2. (B): 0b00010
@@ -95,7 +95,7 @@ This last one is called the `fullIndexSet`. It is calculated by bit-shifting, to
 
 Further, it is useful because of the bitwise operations it offers. For instance, if you want to merge the collections `(A|D)` and `(D|E)`, you use OR, so in this case `0b01001 OR 0b11000 -> 0b11001`. We recognise the new index set as `(A|D|E)`, exactly what we are looking for. We can also check the intersection between index sets. For example, if we have `(B|E)` and `(B|C|D)`, we can discover if they intersect in O(1) using AND. In this case `0b10010 AND 0b01110 -> 0b00010`. The result represents the `(B)` outcome, which is where the collections intersect. It is > 0, so they intersect. The AND of two sets is == 0 if they do not intersect.
 
-This logic allows us to _partition outcome collections_. A partition is outcome collections which do not intersect. A trivial partition is `[(A), (B), (C), (D), (E)]`. `[(A|C), (B|D), (E)]` is another. We could easily check for intersections in O(m^2), where m is the number of collections, but we do it in considerably more efficient O(m) fashion. The Gnosis prediction market contract tracks the outcomes that have not been mentioned yet in `freeIndexSet`. It starts as "all outcomes have not been mentioned yet". Then, on every collection, it makes sure that this collection is fully inside the still available outcomes, then flips down the bits of the collection with the use of XOR. Bonus feature: when `freeIndexSet == 0`, meaning there remain no unmentioned outcomes, your list of index sets, a.k.a. your partition, is exhaustive.
+This logic allows us to _partition outcome collections_. A partition is outcome collections which do not intersect. A trivial partition is `[(A), (B), (C), (D), (E)]`. `[(A|C), (B|D), (E)]` is another. We could easily check for intersections in O(m^2), where m is the number of collections, but we do it in considerably more efficient O(m) fashion. The Gnosis prediction market contract tracks the outcomes that have not been mentioned yet in `freeIndexSet`. It starts as "all outcomes have not been mentioned yet". Then, on every collection, it makes sure that this collection is fully inside the still available outcomes, then flips down the bits of the collection with the use of XOR. Bonus feature: when `freeIndexSet == 0`, meaning there remain no unmentioned outcomes, your list of index sets, referred to as your **partition**, is exhaustive.
 
 ## Scalar Example
 
@@ -131,7 +131,7 @@ This yields the value `0x2a9b72306758380e3b0a31125ed39a635432b283180c41b3fe8b5f5
 
 ## Compounding Conditions
 
-Let’s return to our ERC20 DollaCoin above, which exists at the address `0xD011ad011ad011AD011ad011Ad011Ad011Ad011A`, and is used as collateral for some positions. We will denote this token with `$`. We can calculate the positionId for the position `$:(A|B)` via:
+Let’s add some collateral into the example now. We'll use DAI to collateralize our positions, and pretend the contract exists at the address `0xD011ad011ad011AD011ad011Ad011Ad011Ad011A`. We will denote this token with `$`. We can calculate the positionId for the position `$:(A|B)` via:
 ```js
 web3.utils.soliditySha3({
     t: 'address',
@@ -145,8 +145,10 @@ Which returns `0x6147e75d1048cea497aeee64d1a4777e286764ded497e545e88efc165c9fc4f
 
 Similarly, `$:(LO)` is `0xfdad82d898904026ae6c01a5800c0a8ee9ada7e7862f9bb6428b6f81e06f53bb`, and `$:(A|B)&(LO)` has an postionId of `0xcc77e750b61d29e158aa3193faa3673b2686ba9f6a16f51b5cdbea2a4f694be0`.
 
-The important point to grasp here is that DollaCoin may be staked in the contract as collateral in order to take a position in either of our two examples, or indeed, both. In other words, there are _shallow_ positions like `$:(LO)`, or _deep_ positions like `$:(A|B)&(LO)`. Stake in shallow positions can only be obtained through locking collateral directly in the contract; stake in deeper positions may be accessed by burning stake in shallower positions. The resulting nested and interconnected positions are what we are talking about when we say that every one of the millions of future tokens ought to have a market associated with it that can genuinely survive due to its access to a global liquidity pool.
+The important point to grasp here is that DAI may be staked in the contract as collateral in order to take a position in either of our two examples, or indeed, both. In other words, there are _shallow_ positions like `$:(LO)`, or _deep_ positions like `$:(A|B)&(LO)`. Stake in shallow positions can only be obtained through locking collateral directly in the contract; stake in deeper positions may be accessed by burning stake in shallower positions.
 
 It's easiest to see this at work if we draw out the same graph as earlier, hopefully now with greater understanding:
 
 ![DAG](../img/all-positions-from-two-conditions.png)
+
+The resulting nested and interconnected positions are what we are talking about when we say that every one of the millions of future tokens ought to have a market associated with it that can genuinely survive due to its access to a global liquidity pool.

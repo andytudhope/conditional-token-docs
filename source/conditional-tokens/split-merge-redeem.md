@@ -5,7 +5,9 @@ title: Split, Merge, and Redeem Positions
 
 # Split, Merge, and Redeem Positions
 
-It should be clear from the previous section that, by constructing conditions and outcome collections clearly, we can define _positions_ in prediction markets. These nested and interconnected positions are what we are talking about when we say that every one of the millions of future tokens ought to have a market associated with it that can genuinely survive due to its access to a global liquidity pool. 
+It should be clear from the previous section that, by constructing conditions and outcome collections clearly, we can define _positions_ in prediction markets. Because positions can be split or merged an almost arbitrary amount of times, it means that niche markets (or markets backed by less stable collateral) can still flourish by virtue of their access to global liquidity across all markets. Think about it like this: right now, you have to use your financial insitution as market maker when investing or trading your own money, and your stockbroker in order to trade equities and/or securities, and many other intermediaries in order to access other, more esoteric financial **positions**. You would also have to go to another entirely different market if you have a strong opinion on who will win the next election, which you feel is valuable to others given your access to information.
+
+However, because ERC-1155 tokens give us an inherent ability to split and merge to deeper or shallower positions, making our predictions conditional upon as many different markets as we like; it means that what used to be entirely disparate markets are brought much closer together. Conditions connect markets, making digital trading and investment, securities exchanges, and election prediction possible, even for the long tail of markets and currencies. As the diagram below shows, entirely different markets can grow from the **same pool of collateral**, to the extent that the positions market participants take (i.e. the links in the graph) are conditional upon the results of other markets. 
 
 ![DAG](../img/all-positions-from-two-conditions.png)
 
@@ -16,7 +18,7 @@ Staking collateral in the contract directly to take a shallow position, or burni
  function splitPosition(IERC20 collateralToken, bytes32 parentCollectionId, bytes32 conditionId, uint[] calldata partition, uint amount)
  external
 ```
-If splitting from the collateral, the function will attempt to transfer _amount_ collateral from the message sender to itself. Otherwise, it will burn _amount_ stake held by the message sender in the position being split. Regardless, if successful, _amount_ stake will be minted in the split target positions. If any of the transfers, mints, or burns fail, the transaction will revert. The transaction will also revert if the given partition is trivial, invalid, or refers to more slots than the condition is prepared with.
+If splitting from the collateral, the function will attempt to transfer collateral _amount_ from the message sender to itself. Otherwise, it will burn _amount_ stake held by the message sender in the position being split. Regardless, if successful, _amount_ stake will be minted in the split target positions. If any of the transfers, mints, or burns fail, the transaction will revert. The transaction will also revert if the given partition is trivial, invalid, or refers to more slots than the condition is prepared with.
 
 To decipher this function, let’s consider what would be considered a valid split, and what would be invalid:
 
@@ -46,7 +48,7 @@ Collateral `$` can be split into outcome tokens in positions `$:(A)`, `$:(B)`, a
         // Amount of collateral token to submit for holding
         // in exchange for minting the same amount of
         // outcome token in each of the target positions
-        amount,
+        amount
     )
 ```
 The effect of this transaction is to transfer `amount` DollaCoin from the message sender to the `conditionalTokens` to hold, and to mint `amount` of outcome token for the following positions:
@@ -57,7 +59,7 @@ The effect of this transaction is to transfer `amount` DollaCoin from the messag
 | $:(B) | 0x21aec03d8dfd8b5f0a2750718fe491e439f3625816e383b66a05cabd56624b4c |
 | $:(C) | 0x8085f7c500098412ff2fc701a74174527e7b39a2b923cd0bca6ad2d5f7fa348d |
 
-Outcome tokens are not EIP-20 tokens, but EIP-1155 multi tokens, allowing for batch transfers and other useful, gas-saving functionality explained below.
+Outcome tokens are not ERC-20 tokens, but ERC-1155 multi tokens, allowing for batch transfers and other useful, gas-saving functionality explained below.
 
 Importantly, the set of `(A)`, `(B)`, and `(C)` is not the only nontrivial partition of outcome slots for the example categorical condition. For example, the set `(B)` (with index set `0b010`) and `(A|C)` (with index set `0b101`) also partitions these outcome slots, and consequently, splitting from `$` to `$:(B)` and `$:(A|C)` is also valid and can be done with the following code:
 
@@ -72,7 +74,7 @@ Importantly, the set of `(A)`, `(B)`, and `(C)` is not the only nontrivial parti
         amount,
     )
 ```
-This transaction also transfers `amount` DollaCoin from the message sender to the `conditionalTokens.sol` to hold, and it mints `amount` of EIP-1155 outcome token for the following positions:
+This transaction also transfers `amount` DollaCoin from the message sender to the `conditionalTokens.sol` to hold, and it mints `amount` of ERC-1155 outcome token for the following positions:
 
 | Symbol   |                            Position ID                       |
 | -------  |                              ---------                       |
@@ -139,12 +141,12 @@ function mergePositions(IERC20 collateralToken, bytes32 parentCollectionId, byte
 
 ## Querying and Transferring Stake
 
-Because outcome tokens are EIP-1155 multi token, each one is indexed by an ID. In particular, positionIds are used to index outcome tokens. This is reflected in the balance querying function:
+Because outcome tokens are ERC-1155 multi token, each one is indexed by an ID. In particular, positionIds are used to index outcome tokens. This is reflected in the balance querying function:
 
 ```solidity
 balanceOf(address owner, uint256 positionId) external view returns (uint256)
 ```
-To transfer outcome tokens, the following functions may be used, as per EIP-1155. These have been [shown to save on gast costs](https://github.com/ethereum/EIPs/issues/1155#issuecomment-399969060), and allow you to move many tokens at once, which makes settling positions once the oracle has submitted a payout vector a much more straightforward affair.
+To transfer outcome tokens, the following functions may be used, as per ERC-1155. These have been [shown to save on gas costs](https://github.com/ethereum/EIPs/issues/1155#issuecomment-399969060) and allow you to move many tokens at once, which shortens the process of settling positions after the oracle has submitted a payout vector.
 ```solidity
 safeTransferFrom(address from, address to, uint256 positionId, uint256 value, bytes data) external
 safeBatchTransferFrom(address from, address to, uint256[] positionIds, uint256[] values, bytes data) external
@@ -153,7 +155,7 @@ safeMulticastTransferFrom(address[] from, address[] to, uint256[] positionIds, u
 
 ## Redeeming Positions
 
-Before this is possible, the payout vector must be set by the oracle:
+Before this is possible, the payout vector must be submitted by the oracle:
 
 ```solidity
 function reportPayouts(bytes32 questionId, uint[] calldata payouts) external
