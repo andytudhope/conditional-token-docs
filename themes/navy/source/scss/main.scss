@@ -36,6 +36,10 @@ body{
     color: $white;
 }
 
+.logo {
+    font-weight: bold;
+}
+
 p{
     font-size: 16px;
     line-height: 27px;
@@ -53,7 +57,7 @@ p{
 .teaser-2{
     line-height: 36px;
     font-size: 24px;
-    color: rgba( $dark-grey, .8 );
+    color: $black;
     font-family: $manrope;
     font-weight: $manrope-medium;
     margin-bottom: 50px;
@@ -72,10 +76,10 @@ svg{
 }
 
 a{
-    color: $purple;
+    color: $light-blue;
     transition: all .3s ease;
     &:hover{
-        color: $dark-purple;
+        color: $dark-blue;
     }
 }
 
@@ -170,7 +174,7 @@ hr{
 }
 
 h1, h2, h3, h4, h5, h6{
-    color: $black;
+    color: $light-blue;
     font-family: $manrope;
     font-weight: $manrope-regular;
     margin-bottom: 40px;
@@ -198,9 +202,9 @@ h4{
 }
 
 .btn{
-    color: $black;
-    border: 1px solid $black;
-    border-radius: 0;
+    color: $white;
+    border: 1px solid $light-blue;
+    border-radius: 10px;
     line-height: 20px;
     font-size: 16px;
     letter-spacing: -0.375px;
@@ -209,11 +213,11 @@ h4{
     font-weight: $ibm-plex-mono-semi-bold;
     border-radius: 2px;
     position: relative;
-    background: transparent;
+    background: $light-blue;
     align-items: center;
     &:hover{
-        color: $white;
-        background: $black;
+        color: $light-blue;
+        background: $white;
         svg{
             path{
                 fill: $white;
@@ -283,9 +287,12 @@ h4{
 .btn-white{
     color: $white;
     border: 1px solid $white;
-    background: $black;
+    background: $light-blue;
+    width: 200px;
+    text-align: left;
+    margin-bottom: 40px;
     &:hover{
-        color: $black;
+        color: $light-blue;
         border: 1px solid $white;
         background: $white;
     }
@@ -567,7 +574,7 @@ h4{
         color: $white;
     }
     .teaser-2{
-        color: rgba( $white, .6 );
+        color: $black;
     }
     .p-large{
         color: rgba( $white, .8 );
@@ -684,6 +691,7 @@ header{
     nav{
         margin-top: -30px;
         margin-bottom: -30px;
+        margin-right: 50px;
         display: flex;
         align-items: center;
         ul{
@@ -949,8 +957,13 @@ header{
     }
 }
 
+.bottom-para {
+    font-weight: bold;
+    font-size: 24px;
+}
+
 footer{
-    background: $black;
+    background: $light-blue;
     color: $white;
     padding: 0 25px;
     a{
@@ -1102,15 +1115,6 @@ footer{
 .home-wallet{
     .inner{
         padding-top: 130px;
-        &:after{
-            content: '';
-            width: 100%;
-            height: 160px;
-            bottom: 0;
-            left: 0;
-            background: linear-gradient(180deg, rgba(9, 9, 9, 0.0001) 0%, rgba(9, 9, 9, 0.5) 100%);
-            position: absolute;
-        }
         .teaser-2{
             margin-bottom: 20px;
         }
@@ -3349,11 +3353,6 @@ img.qr-code{
     }
     header{
         padding: 15px 5px;
-        .logo{
-            img{
-                height: 30px;
-            }
-        }
         nav{
             display: none;
         }

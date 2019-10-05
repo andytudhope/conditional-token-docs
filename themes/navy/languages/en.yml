@@ -1,10 +1,9 @@
 site:
   home:
     intro:
-      title: "Conditional Tokens"
-      description: "Learn how to build liquid digital economies. For the brave, true or false."
+      title: "Learn how to build liquid digital economies. For the brave, true or false."
     decentralized:
-      subtitle: "A MultiToken World"
+      subtitle: "A Multi Token World"
       title: "Permissionless Innovation"
       description: "Ethereum always has always promoted permissionless innovation. ERC-1155 is the latest in an already impressive array of examples, and is being developed and used actively by everyone from game developers to prediction market makers."
       link: "Docs"
@@ -20,9 +19,9 @@ site:
       subtitle: "Become a Pioneer"
       title: "DEXs and dFusion"
       description: "Help us with cutting-edge research on running decentralized exchanges on public and permissionless networks."
-    security:
-      title: "Secure Markets for Everyone"
+    summary:
       description: "Price discovery mechanisms have changed the world. Now, we can ensure they remain free and unstoppable forever, as well as grant anyone with an internet connection the ability to use them. This is a revolution in what — and how — we value."
+      test: "test"
   get-involved:
     index:
       intro:
