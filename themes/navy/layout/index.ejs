@@ -5,21 +5,22 @@
 	<section class="home-intro">
 		<div class="container">
 	        <div class="row">
-	            <div class="col-md-7 col-lg-6">
+	            <div class="col-md-9 col-lg-7">
 	            	<div class="inner d-flex align-items-start flex-column justify-content-center h-100">
 						<div class="row">
 							<div class="col-md-16">
 								<h1><%- __('site.home.intro.title') %></h1>
 								<div class="d-flex">
-									<a href="<%- show_lang() %>/conditional-token-docs/docs/" class="btn"><%- __('site.link.learn-more') %></a>
+									<a href="<%- show_lang() %>/conditional-token-docs/docs/" class="btn home-btn"><%- __('site.link.learn-more') %></a>
 								</div>
 							</div>
 						</div>
 	            	</div>
-	            </div>
-	            <div class="col-md-4 ml-auto col-lg-6">
-					<%- image_tag("/img/", { srcset: '/img/ 2x'}) %>
-	            </div>
+				</div>
+				<div class="col-md-3 col-offset-top">
+					<div class="rotating-circle"></div>
+					<div class="rotating-circle rc-2"></div>
+				</div>
 	        </div>
 	    </div>
 	</section>
@@ -36,16 +37,14 @@
 								<p class="teaser-2"><%- __('site.home.decentralized.subtitle') %></p>
 								<p class="teaser-2"><%- __('site.home.decentralized.title') %></p>
 								<p class="p-large"><%- __('site.home.decentralized.description') %></p>
-								<%- image_tag("/img/", { srcset: '/img/ 2x'}) %>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-6 home-private">
-					<div class="inner d-flex align-items-start flex-column justify-content-center h-100">
+				<div class="col-md-6 home-browser">
+					<div class="inner d-flex align-items-start flex-column h-100">
 						<div class="row">
-							<div class="col-lg-11 d-flex align-items-start flex-column">
-								<%- image_tag("/img/", { srcset: '/img/ 2x'}) %>
+							<div class="col-md-11 col-lg-10">
 								<p class="teaser-2"><%- __('site.home.private.subtitle') %></p>
 								<p class="teaser-2"><%- __('site.home.private.title') %></p>
 								<p class="p-large"><%- __('site.home.private.description') %></p>
@@ -56,51 +55,45 @@
 			</div>
 		</div>
 	</section>
-	<!--END-HOME-DECENTRALIZED-PRIVATE-->
 
-	<!--HOME-WALLET-BROWSER-->
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-6 home-wallet">
+				<div class="col-md-6 home-decentralized">
 					<div class="inner d-flex align-items-start flex-column h-100">
 						<div class="row">
 							<div class="col-md-11 col-lg-10">
 								<p class="teaser-2"><%- __('site.home.wallet.subtitle') %></p>
 								<p class="teaser-2"><%- __('site.home.wallet.title') %></p>
 								<p class="p-large"><%- __('site.home.wallet.description') %></p>
-								<div class="img-holder">
-									<%- image_tag("/img/wallet-illustration.png", { srcset: '/img/wallet-illustration-2x.png 2x'}) %>
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-6 home-browser">
 					<div class="inner d-flex align-items-start flex-column h-100">
-						<%- image_tag("/img/browser-illustration.png", {srcset: "/img/browser-illustration-2x.png 2x"}) %>
-						<p class="teaser-2"><%- __('site.home.browser.subtitle') %></p>
-						<p class="teaser-2"><%- __('site.home.browser.title') %></p>
-						<p class="p-large"><%- __('site.home.browser.description') %></p>
+						<div class="row">
+							<div class="col-md-11 col-lg-10">
+								<p class="teaser-2"><%- __('site.home.browser.subtitle') %></p>
+								<p class="teaser-2"><%- __('site.home.browser.title') %></p>
+								<p class="p-large"><%- __('site.home.browser.description') %></p>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!--END-HOME-WALLET-BROWSER-->
 
-	<!--HOME-SECURITY-->
-	<section class="home-security p-t-160 p-b-160">
+	<section class="home-security">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="inner">
-						<p class="bottom-para"><%- __('site.home.summary.description') %></p>
-					</div>
+			<div class="inner d-flex align-items-start flex-column h-100">
+				<div class="row">
+					<p class="teaser-2"><%- __('site.home.summary.title') %></p>
+					<p class="bottom-para"><%- __('site.home.summary.description') %></p>
 				</div>
 			</div>
 		</div>
 	</section>
-	<!--END-HOME-SECURITY-->
 
 </main>

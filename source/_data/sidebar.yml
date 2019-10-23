@@ -1,7 +1,7 @@
 docs:
   docs:
     technical_documentation: technical_documentation.html (Overview)
-    eip-1155: erc-1155.html (ERC-1155)
+    erc-1155: erc-1155.html (ERC-1155)
   conditional-tokens:
     conditional-tokens: / (Conditional Tokens)
     contract: contract.html (Contract Overview)
