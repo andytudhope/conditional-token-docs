@@ -22,110 +22,6 @@ site:
     summary:
       title: "Secure Markets for Everyone"
       description: "Price discovery mechanisms have changed the world. Now, we can ensure they remain free and unstoppable forever, as well as grant anyone with an internet connection the ability to use them. This is a revolution in what — and how — we value."
-  get-involved:
-    index:
-      intro:
-        title: "An Open Source Community"
-        description: "Whether you are a developer, educator, or community organizer, there are ways for you to encourage the spread of conditional tokens and advocate for a MultiToken world. Here are the resources to get you started."
-      resources:
-        resource-1:
-          title: "Developers"
-          description: "Work through these docs and include EIP-1155 MultiTokens in your own applications to enable a whole new world of uses cases! <br><br> Save gas, piggy-back off the secured work of other developers, and together, we can build liquid markets for everything from prediction to gaming, and so contribute toward a more equitable and accessible economy for all."
-        resource-2:
-          title: "Educators"
-          description: "Education and an informed environment are crucial for a successful open source project. <br><br>We welcome anyone to help educate others on how to best and most creatively use conditional tokens."
-        resource-3:
-          title: "Community Groups"
-          description: "There are a number of technical teams working on this standard. <br><br>Be the first to start a group based on your personal interests: whether that is prediction markets, games, or some other application."
-      contributors:
-        title: "Top Community Contributors"
-    developers:
-      intro:
-        subtitle: "An Open Source Community"
-        title: "Development"
-        description: "Start contributing to a Multi Token future today."
-      quick-nav-sub:
-        link-1: "Contribute"
-        link-2: "Build DApps"
-        link-3: "Extend DApps"
-        link-4: "Developer Resources"
-        link-5: "Github"
-      contribute-to-status: 
-        title: "Contribute"
-        description: "Get set up with this Contributor Guide."
-        link: "Quick Start Guide"
-        status-react:
-          title: "Status-React"
-          description: "Written in Clojure - this is where we handle interactions between Whisper and the app; between the wallet, the user and any Distributed Application (DApp) that they want to access; and where the UI logic lives."
-          link: "View Repository"
-        status-go:
-          title: "Status-Go"
-          description: "Written in Go - this is where all of the blockchain logic, transactions, and light client work we do lives."
-          link: "View Repository"
-        open-issues-status-react:
-          title: "Open Issues Status-React"
-          link: "View all open issues"
-        open-issues-status-go: 
-          title: "Open Issues Status-Go"
-          link: "View all open issues"
-        earn-crypto: 
-          title: "Earn crypto for <br>completing bounties"
-          description: "See the full list of technical bounties on"
-          link: "Gitcoin"
-        report-a-security-vulnerability: 
-          title: "Report a security <br>vulnerability and fix it"
-          description: "Learn more about the"
-          link: "Bug bounty program"
-      development-dapp:
-        build-dapp:
-          title: "Build your own DApp"
-          description: "Get started with our tools and frameworks to build your own decentralized application."
-          link-1: "Optimize for mobile with the Javascript API"
-          link-2: "Build your own DApp with Embark"
-          link-3: "Access Web3 providers and detect Status"
-          link-4: "Submit your DApp to the Status DApp list"
-        extend-dapp:
-          title: "Extend your DApp"
-          description: "Extensions allow you to leverage the native of features of Status within your DApp."
-          link-1: "Introduction to Extensions"
-          link-2: "Tutorials"
-          link-3: "Examples & Existing Extensions"
-      development-resources:
-        contribute-support:
-          title: "Contribute Support"
-          link-1: "Write Documentation"
-          link-1-description: "Dive in and help write, edit, and fix the docs. Edits are all made via GitHub."
-          link-2: "Translate Documentation"
-          link-2-description: "We need help translating all of our documentation into your local language."
-          link-3: "Welcome New Contributors"
-          link-3-description: "Join the Status #introductions channel and help out new contributors and community members."
-          link-4: "Create Tutorials"
-          link-4-description: "Contact us and learn how you can have your tutorials featured in the docs and the Status blog."
-        developer-resources:
-          title: "Developer Resources"
-          link-1: "Github Repositories"
-          link-2: "Documentation"
-          link-3: "Embark"
-          link-4: "Tutorials"
-          link-5: "Nightly Builds"
-          link-6: "Blog"
-          link-7: "Listen to the latest core developer call"
-          link-8: "Check out the latest release notes"
-          link-9: "See the list of active swarms"
-      get-in-touch:
-        title: "Get in touch"
-        join-status:
-          link: "Join #status"
-          description: "General Status news and discussion."
-        join-status-core:
-          link: "Join #status-core"
-          description: "Public channel about core development."
-        join-introductions:
-          link: "Join #introductions"
-          description: "New to Status? Introduce yourself and say hello!"
-        contact-us:
-          link: "Contact us"
-          description: "For everything else, email us directly."
   docs:
     stripe:
       title: "Conditional Tokens Documentation"
@@ -159,8 +55,7 @@ site:
       title: "We are here to help!"
       description: "We're always happy to help with code or any questions you have."
       link-1: "Submit an issue on GitHub"
-      link-2: "Ask on reddit"
-      link-3: "Email us"
+      link-2: "Email us"
   header:
     nav:
       get-involved:
@@ -178,31 +73,10 @@ site:
         link-6: "Research"
       blog: "Blog"
   footer:
-    title: "Ready to get started?"
-    product:
-      title: "Community"
-      apps: "Apps"
-    status:
-      title: "Status"
-      jobs: "Jobs"
-      white-paper: "White Paper"
-    documentation:
-      title: "Documentation"
-    status-network:
-      title: "Status Network"
-      embark: "Embark"
-      nimbus: "Nimbus"
-      keycard: "Keycard"
-    connect: "Connect"
-    privacy-policy:
-      title: "Privacy Policy"
-      description: "Status Research & Development GmbH, Baarerstrasse 10, Zug, Switzerland"
+    title: "Get Going With GECO Grants"
   link:
     get-involved: "Get Involved"
     docs: "Docs"
     gnosis: "Gnosis"
-    developers: "Developers"
-    educators: "Educators"
-    community-groups: "Community Groups"
     learn-more: "Learn More"
     read-all: "Get Learning"
