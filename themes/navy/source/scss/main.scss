@@ -9,8 +9,8 @@
 
 body{
     background: $white;
-    font-family: $ibm-plex-sans;
-    font-weight: $ibm-plex-sans-regular;
+    font-family: $averta;
+    font-weight: $averta-regular;
     font-size: 16px;
     line-height: 27px;
     color: $dark-grey;
@@ -37,7 +37,7 @@ body{
 }
 
 .logo {
-    font-weight: $manrope-bold;
+    font-weight: $averta-bold;
     font-size: 26px;
 }
 
@@ -59,8 +59,8 @@ p{
     line-height: 36px;
     font-size: 24px;
     color: $black;
-    font-family: $manrope;
-    font-weight: $manrope-bold;
+    font-family: $averta;
+    font-weight: $averta-bold;
     margin-bottom: 50px;
     align-self: stretch;
 }
@@ -90,15 +90,15 @@ a:focus{
 }
 
 b{
-    font-weight: $ibm-plex-sans-bold;
+    font-weight: $averta-bold;
 }
 
 blockquote{
     line-height: 36px;
     font-size: 24px;
     color: rgba($dark-grey, 0.8);
-    font-family: $manrope;
-    font-weight: $manrope-medium;
+    font-family: $averta;
+    font-weight: $averta-medium;
     position: relative;
     margin-bottom: 30px;
     &:before {
@@ -116,8 +116,8 @@ blockquote{
         line-height: 36px;
         font-size: 24px;
         color: rgba($dark-grey, 0.8);
-        font-family: $manrope;
-        font-weight: $manrope-medium;
+        font-family: $averta;
+        font-weight: $averta-medium;
     }
 }
 
@@ -176,15 +176,15 @@ hr{
 
 h1, h2, h3, h4, h5, h6{
     color: $light-blue;
-    font-family: $manrope;
-    font-weight: $manrope-regular;
+    font-family: $averta;
+    font-weight: $averta-regular;
     margin-bottom: 40px;
 }
 
 h1{
     line-height: 48px;
     font-size: 40px;
-    font-weight: $manrope-bold;
+    font-weight: $averta-bold;
 }
 
 h2{
@@ -446,59 +446,6 @@ h4{
     }
 }
 
-.announcement{
-    color: $dark-grey;
-    font-weight: $ibm-plex-mono-medium;
-    font-family: $ibm-plex-mono;
-    font-style: normal;
-    line-height: 17px;
-    font-size: 13px;
-    position: relative;
-    padding-right: 20px;
-    margin-top: 80px;
-    display: inline-flex;
-    align-items: center;
-    opacity: 1;
-    transition: all .3s ease;
-    &.inactive{
-        opacity: 0;
-    }
-    &:after{
-        content: '';
-        width: 6px;
-        height: 13px;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        transition: all .3s ease;
-        background-image: url(../img/icon-arrow-right-grey.svg);
-    }
-    &:hover{
-        &:after{
-            transform: translateY(-50%) translateX(3px);
-        }
-    }
-    span{
-        background: #090909;
-        border-radius: 3px;
-        font-weight: $manrope-bold;
-        font-family: $manrope;
-        font-size: 10px;
-        text-align: center;
-        letter-spacing: 0.416667px;
-        color: $white;
-        text-transform: uppercase;
-        padding: 1px 5px;
-        margin-right: 15px;
-    }
-    b{
-        font-weight: $manrope-regular;
-    }
-}
-
 .inline-links{
     margin: 0;
     padding: 0;
@@ -587,7 +534,7 @@ header{
     display: flex;
     justify-content: space-between;
     position: relative;
-    font-family: $manrope;
+    font-family: $averta;
     position: relative;
     z-index: 990;
     max-width: 1440px;
@@ -765,7 +712,7 @@ header{
                         }
                         h4{
                             font-size: 24px;
-                            font-weight: $manrope-semi-bold;
+                            font-weight: $averta-semi-bold;
                             margin-bottom: 15px;
                             color: $dark-blue;
                         }
@@ -782,8 +729,8 @@ header{
                                 a{
                                     padding: 10px 20px 10px 0;
                                     color: $dark-blue;
-                                    font-family: $manrope;
-                                    font-weight: $manrope-bold;
+                                    font-family: $averta;
+                                    font-weight: $averta-bold;
                                     &:before{
                                         display: none;
                                     }
@@ -825,12 +772,12 @@ header{
                     padding: 10px 20px;
                     font-size: 16px;
                     color: $dark-blue;
-                    font-weight: $manrope-bold;
+                    font-weight: $averta-bold;
                     display: flex;
                     align-items: center;
                     &.link-arrow{
-                        font-family: $manrope;
-                        font-weight: $manrope-bold;
+                        font-family: $averta;
+                        font-weight: $averta-bold;
                     }
                     .arrow{
                         width: 9px;
@@ -947,7 +894,7 @@ header{
 }
 
 .bottom-para {
-    font-weight: $manrope-bold;
+    font-weight: $averta-bold;
     font-size: 32px;
     line-height: 38px;
 }
@@ -984,9 +931,9 @@ footer{
         h3{
             margin: 0;
             -webkit-text-stroke: 2px #f7f5f5;
-            font-size: 80px;
-            font-weight: $manrope-bold;
-            line-height: 90px;
+            font-size: 70px;
+            font-weight: $averta-bold;
+            line-height: 80px;
         }
         .inline{
             align-items: flex-start;
@@ -1000,7 +947,7 @@ footer{
         }
     }
     .gnosis-btn {
-        margin-top: -110px;
+        margin-top: -90px;
     }
     .footer-circle {
         width: 40px;
@@ -1080,7 +1027,7 @@ footer{
 .docs-content{
     margin-top: 80px;
     .section-title{
-        font-weight: $manrope-medium;
+        font-weight: $averta-medium;
     }
     p{
         margin: 15px 0 20px 0;
@@ -1097,9 +1044,9 @@ footer{
             margin-bottom: 20px;
         }
         .inner{
-            font-family: $manrope;
+            font-family: $averta;
             a{
-                font-weight: $manrope-semi-bold;
+                font-weight: $averta-semi-bold;
             }
         }
     }
@@ -1141,8 +1088,8 @@ footer{
             color: $light-grey;
             font-size: 14px;
             line-height: 22px;
-            font-family: $manrope;
-            font-weight: $manrope-medium;
+            font-family: $averta;
+            font-weight: $averta-medium;
             display: block;
             margin-top: 10px;
         }
@@ -1183,8 +1130,8 @@ footer{
         li{
             margin-bottom: 25px;
             a{
-                font-family: $manrope;
-                font-weight: $manrope-semi-bold;
+                font-family: $averta;
+                font-weight: $averta-semi-bold;
                 font-size: 18px;
                 line-height: 25px;
             }
@@ -1231,7 +1178,7 @@ footer{
             }
             a{
                 color: $black;
-                font-weight: $ibm-plex-sans-medium;
+                font-weight: $averta-medium;
                 img{
                     margin-left: 10px;
                 }
@@ -1246,12 +1193,12 @@ footer{
                     &.active{
                         a{
                             color: $light-blue;
-                            font-weight: $ibm-plex-sans-medium;
+                            font-weight: $averta-medium;
                         }
                     }
                     a{
                         font-size: 15px;
-                        font-weight: $ibm-plex-sans-regular;
+                        font-weight: $averta-regular;
                         color: $black;
                         img{
                             margin-left: 15px;
@@ -1324,14 +1271,14 @@ footer{
         }
         a{
             color: $light-blue;
-            font-weight: $ibm-plex-sans-medium;
+            font-weight: $averta-medium;
             text-decoration: underline;
             &:hover{
                 color: $dark-blue;
             }
         }
         strong, b{
-            font-weight: $ibm-plex-sans-bold;
+            font-weight: $averta-bold;
         }
         img{
             display: block;
@@ -1647,6 +1594,10 @@ footer{
 }
 
 @media screen and (max-width: 991px) {
+    iframe {
+        width: 100%;
+        height: 300px;
+    }
     .home-intro {
         margin-top: 0px;
     }
@@ -1744,7 +1695,6 @@ footer{
                 align-items: center;
                 flex-direction: column;
                 li {
-                    height: 100%;
                     display: flex;
                     width: 100%;
                     margin: 0;

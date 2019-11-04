@@ -15,50 +15,26 @@ $lighter-grey: #EAECEF;
 // Font Family
 
 @font-face {
-    font-family: 'Manrope';
-    src: url('../fonts/Manrope-Regular.woff2') format('woff2'),
-        url('../fonts/Manrope-Regular.woff') format('woff');
+    font-family: 'Averta';
+    src: url('../fonts/Averta-Regular.otf') format('otf');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Manrope';
-    src: url('../fonts/Manrope-Medium.woff2') format('woff2'),
-        url('../fonts/Manrope-Medium.woff') format('woff');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Manrope';
-    src: url('../fonts/Manrope-Semibold.woff2') format('woff2'),
-        url('../fonts/Manrope-Semibold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Manrope';
-    src: url('../fonts/Manrope-Bold.woff2') format('woff2'),
-        url('../fonts/Manrope-Bold.woff') format('woff');
+    font-family: 'Averta';
+    src: url('../fonts/Averta-Bold.otf') format('otf');
     font-weight: 800;
     font-style: normal;
 }
 
-$manrope: 'Manrope', sans-serif;
-$manrope-regular: 400;
-$manrope-medium: 500;
-$manrope-semi-bold: 600;
-$manrope-bold: 800;
+$averta: 'Averta', sans-serif;
+$averta-regular: 400;
+$averta-medium: 500;
+$averta-semi-bold: 600;
+$averta-bold: 800;
 
 $ibm-plex-mono: 'IBM Plex Mono', monospace;
 $ibm-plex-mono-regular: 400;
 $ibm-plex-mono-medium: 500;
 $ibm-plex-mono-semi-bold: 600;
-
-$ibm-plex-sans: 'IBM Plex Sans', sans-serif;
-$ibm-plex-sans-regular: 400;
-$ibm-plex-sans-medium: 500;
-$ibm-plex-sans-semi-bold: 600;
-$ibm-plex-sans-bold: 700;
