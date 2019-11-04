@@ -996,6 +996,12 @@ footer{
     margin-bottom: 100px;
 }
 
+.col-offset-top{
+    margin-top: -60px;
+    margin-left: -80px;
+    z-index: 2;
+}
+
 .rotating-circle {
     border-radius: 50%;
     border: 2px solid $light-blue;
