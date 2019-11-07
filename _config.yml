@@ -31,9 +31,9 @@ deploy:
   repo: git@github.com:andytudhope/conditional-token-docs.git
   branch: gh-pages
 
-disqus_shortname: hexojs
-twitter: cryptowanderer
-github: andytudhope
+favicon: favicon.png
+twitter: gnosisPM
+github: gnosis
 
 graphviz:
   enable: true

@@ -952,33 +952,35 @@ footer{
     .footer-circle {
         width: 40px;
         height: 40px;
-        background-color: #d8d8d8;
+        background-color: transparent;
         border-radius: 50%;
         float: left;
-        margin-right: 30px;
+        margin-right: 40px;
         margin-top: 100px;
     }
     .footer-1 {
-        background-image: url('../img/github-black-logo.svg');
+        background-image: url('../img/github-white-logo.svg');
         background-repeat: no-repeat;
         background-position: center;
+        background-size: 70%;
     }
     .footer-2 {
-        background-image: url('../img/telegram-black.svg');
+        background-image: url('../img/telegram-white.svg');
         background-repeat: no-repeat;
         background-position: center;
+        background-size: 80%;
     }
     .footer-3 {
-        background-image: url('../img/discord-black.svg');
+        background-image: url('../img/discord-white.svg');
         background-repeat: no-repeat;
         background-position: center;
         background-size: 80%;
     }
     .footer-4 {
-        background-image: url('../img/rss-black.svg');
+        background-image: url('../img/rss-white.svg');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: 70%
+        background-size: 70%;
     }
 }
 
