@@ -1,6 +1,6 @@
-# EIP 1155 - MultiTokens for the brave, true or false
+# EIP 1155 - Conditional tokens for the brave, true or false
 
-This repo hosts the code for Gnosis' MultiToken documentation site, explaining our unique implementation of EIP 1155 in order to create _conditional tokens_ ideally suited to prediction markets.
+This repo hosts the code for Gnosis' conditional tokens documentation site, explaining our unique implementation of EIP 1155 in order to create _conditional tokens_ ideally suited to prediction markets.
 
 Anyone is free to add to or edit this code - the more documentation we get, the better.
 
@@ -26,7 +26,7 @@ Make sure you have node.js installed first.
 1. If you would like add new styles, you can find all the `sass` files in `themes/navy/source/scss` - add your own there and keep things modular, clean and performing well.
 2. If you would like to add some JS for animations of images, or other potential bounties, the place to do that is `themes/navy/source/js`.
 3. Changing the header, footer, mobile nav, or scripts (in `after_footer`) can be done in `themes/navy/layout/partial`.
-4. Each new subdirectory gets it's own route, so if you want to add a new section like `multitoken.world/extensions` or `multitoken.world/contribute`, then just create a new directory in `source`, name it what you want the route to be called, and add an `index.md` file to it. 
+4. Each new subdirectory gets it's own route, so if you want to add a new section like `conditional-tokens/extensions` or `conditional-tokens/contribute`, then just create a new directory in `source`, name it what you want the route to be called, and add an `index.md` file to it. 
 
 If you want it to have a unique layout, set it up something like this:
 
