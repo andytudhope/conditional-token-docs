@@ -5,7 +5,7 @@ id: get-started
 
 # Get Started
 
-OK, enough about contracts and our Multi Token future. Let's start building it already! For this section, you will need 
+OK, enough about contracts and the many futures of conditional tokens. Let's start building it already! For this section, you will need 
 
 1. At least some familiarity with [Solidity](https://solidity.readthedocs.io/), a language for programming smart contracts on Ethereum. 
 2. A development framework called [Truffle](https://www.trufflesuite.com/) and it's accompanying "mock" blockchain tool, [ganache-cli](https://github.com/trufflesuite/ganache-cli/blob/master/README.md) in order to follow along from here.

@@ -11,7 +11,7 @@ Take a wander through our latest research papers and get involved with cutting-e
 
 [Read more](https://github.com/gnosis/dex-research/blob/master/BatchAuctionOptimization/batchauctions.pdf) about the problem of multi-token batch auctions with uniform clearing prices as a price-finding mechanism proposed for a decentralized token trading platform. You'll also find some solution approaches based on combinatorial optimization formulations, as well as some computational results.
 
-### dFusion
+### Batch.Trade
 
 Blockchains and specifically smart contracts are a promising tool to enable a secure and fair trading ecosystem. The first exchanges built on these technologies emulate the traditional continuous double auction design. Existing solutions that do not rely on a centralized operator face significant challenges with front-running.
 
@@ -19,7 +19,7 @@ Blockchains and specifically smart contracts are a promising tool to enable a se
 
 ### Fee Structures
 
-Due to the design of the dFusion protocol outlined above, we've also been researching [possible fee structures](https://github.com/gnosis/dex-research/blob/master/fee-structure/fee-structure.md) for decentralized trading protocols.
+Due to the design of the Batch protocol outlined above, we've also been researching [possible fee structures](https://github.com/gnosis/dex-research/blob/master/fee-structure/fee-structure.md) for decentralized trading protocols.
 
 Designing autonomous or semi-autonomous mechanisms for decentralized systems requires accommodating multiple tradeoffs under the overarching goal of ensuring ongoing operation in a trustless environment. Some objectives will be specifically defined as primary system goals, but the common objectives of **security** and **ease of access** tend to be somewhat in conflict in all systems, so a primary design principle is to find the right combination of the two that is not just a compromise.
 

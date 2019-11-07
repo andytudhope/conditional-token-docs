@@ -35,7 +35,7 @@ The supply and demand – buyers and sellers – of "Yang is elected" and "Trump
 
 ## Advantages
 
-Using ERC-1155 to make _conditional tokens_ has allowed Gnosis to pursue further 3 long-term goals:
+For example, building the conditional tokens standard on ERC-1155 has allowed Gnosis to pursue further 3 long-term goals:
 
 1. **Counter low liquidity** with [DutchX](https://www.reddit.com/r/ethereum/comments/a3expm/slowtrade_is_live_on_mainnet_or_why_we_build_the/). With the potential to create millions of distinct markets, individual market liquidity is likely to be low, but using conditional tokens based on ERC-1155 means we can still find a reliable price, as trading on a fully decentralized exchange will unlock a shared global liquidity pool.
 2. **Interconnected price dynamics** with [our DEX prototype research](https://github.com/gnosis/dex-research). Take (1) the price of an asset, (2) the price of said asset in future A, (3) the price of said asset in future B, and finally (4) the likelihood of futures A and B. While each of these could have an individual market, with an individual price, the prices themselves are not independent. In other words, any 3 of those 4 prices dictates the 4th price. Conditional tokens allow us to feed such information back into the market to make the mechanism itself more efficient.

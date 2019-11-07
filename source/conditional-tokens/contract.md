@@ -5,7 +5,7 @@ title: Contract Overview
 
 # Conditional Token Overview
 
-In order to understand [conditional tokens](https://github.com/gnosis/conditional-tokens-contracts/blob/master/contracts/ConditionalTokens.sol), you need to grasp how they are used to construct _positions_. A "position" is a financial term which can be described as a buy or sell action that reflects someone’s belief in an asset’s, or multiple assets’, future price. Positions are fundamental to how free markets work, but there is a problem. Many so-called "positions" which can be taken in the current financial system are only available to select groups of wealthy individuals, corporations and government bodies. The market is never _really_ free or fair, but we can help change that through altering the very notion of what a position is, as well as who can access it.
+In order to understand [conditional tokens](https://github.com/gnosis/conditional-tokens-contracts/blob/master/contracts/ConditionalTokens.sol), you need to grasp how they are used to construct _positions_. A "position" is a financial term which can be described as a buy or sell action that reflects someone’s belief in an asset’s, or multiple assets’, future price.
 
 ## Positions
 
